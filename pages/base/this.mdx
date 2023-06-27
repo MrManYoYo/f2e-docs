@@ -1,0 +1,77 @@
+import { Callout } from 'nextra/components'
+
+# this关键字
+
+- **关键字`this`指向了当前代码运行时的对象**
+- **`this` 保证了当代码的上下文 (context) 改变时变量的值的正确性**
+
+<Callout type="info">
+  the current object the code is being written inside
+</Callout>
+
+---
+
+在JavaScript中，关键字this用于引用当前执行上下文中的对象。它通常用于方法中，表示当前正在调用该方法的对象。然而，this的值在不同的情况下可能会有所不同，需要根据上下文来确定。
+
+### this的值可以在以下几种情况下发生变化：
+
+1. 全局上下文中的this：在全局作用域中，this指向全局对象（在浏览器环境中通常是window对象）。例如：
+
+```javascript
+console.log(this); // 输出全局对象（在浏览器中是window对象）
+```
+
+2. 函数中的this：在函数内部，this的值取决于函数的调用方式。具体取值如下：
+- 作为普通函数调用时，this指向全局对象或undefined（在严格模式下）。
+- 作为对象方法调用时，this指向调用该方法的对象。
+- 作为构造函数调用时，this指向正在创建的实例对象。
+- 使用call()、apply()或bind()方法调用时，this由第一个参数指定。
+
+
+```javascript filename="example.js"
+function greet() {
+  console.log(this.name);
+}
+
+let person1 = {
+  name: "John",
+  sayHello: greet
+};
+
+let person2 = {
+  name: "Jane",
+  sayHello: greet
+};
+
+greet(); // 全局上下文调用，this为全局对象
+person1.sayHello(); // 对象方法调用，this为person1对象
+person2.sayHello(); // 对象方法调用，this为person2对象
+
+function Car(make, model) {
+  this.make = make;
+  this.model = model;
+}
+
+let myCar = new Car("Toyota", "Camry"); // 构造函数调用，this为新创建的Car实例
+
+let obj = { name: "John" };
+greet.call(obj); // 使用call()方法调用，this为obj对象
+```
+
+3. 箭头函数中的this：箭头函数不会创建自己的this值，而是继承包含它的父级作用域的this值。它绑定了词法作用域中的this，使得this在定义时就确定了，并在整个箭头函数的生命周期内保持不变。
+示例：
+
+```javascript filename="example.js"
+let obj = {
+  name: "John",
+  greet: function() {
+    setTimeout(() => {
+      console.log(this.name); // 箭头函数继承了父级作用域的this，指向obj对象
+    }, 1000);
+  }
+};
+
+obj.greet();
+```
+
+*需要注意的是，this的值在不同的情况下可能会有所不同，特别是在嵌套函数、事件处理程序和异步操作中。在这些情况下，需要仔细观察上下文并理解this的绑定规则。*

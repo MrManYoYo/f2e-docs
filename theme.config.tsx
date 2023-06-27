@@ -15,6 +15,9 @@ const config: DocsThemeConfig = {
       </svg>
     </>
   ),
+  project: {
+    link: 'https://github.com/MrManYoYo/f2e-docs'
+  },
   useNextSeoProps() {
     return {
       titleTemplate: '%s - F2E Docs'

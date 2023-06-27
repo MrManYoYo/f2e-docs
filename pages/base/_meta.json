@@ -1,3 +1,4 @@
 {
-  "page1": "Page 1"
+  "datatype": "原始数据类型",
+  "this": "关键字-this"
 }
