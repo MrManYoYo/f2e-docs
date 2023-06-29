@@ -1,0 +1,25 @@
+### 在使用构造函数时, new关键字做了什么
+
+在JavaScript中，使用new关键字来调用构造函数时，它执行了以下操作：
+
+1. 创建一个空对象：`new`关键字创建的一个空的、未继承任何对象的新对象；
+2. 将构造函数的作用域赋给新对象：`new`关键字将构造函数的作用域绑定到新创建的对象上，使得构造函数中的`this`引用新对象；
+3. 执行构造函数的代码：`new`关键字调用构造函数，并传递任何指定的参数，这样，构造函数中的代码就可以操作新对象；
+4. 返回新对象：如果构造函数没有显式返回其他对象，那么`new`关键字将隐式返回新对象
+
+```js filename="example.js"
+function Person (name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function () {
+    console.log(`Hello, my name is ${this.name}.`)
+  }
+}
+
+let john = new Person('John', 30);
+john.greet(); // Hello, my name is John.
+```
+
+在上述示例中，通过 new 关键字调用 Person 构造函数时，new 关键字创建了一个新的空对象，并将构造函数 Person 的作用域绑定到新对象上。然后，构造函数中的代码执行，并通过 this 引用新对象，从而给新对象赋予属性和方法。最后，new 关键字隐式返回新对象，使得 john 变量指向该新对象。
+
+总结来说，new 关键字提供了一种方便的方式来创建对象实例，并与构造函数的作用域进行绑定。它是面向对象编程中的重要概念之一。
