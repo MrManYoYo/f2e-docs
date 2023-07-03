@@ -2,5 +2,7 @@
   "datatype": "原始数据类型",
   "keyword-this": "关键字-this",
   "keyword-new": "关键字-new",
-  "operator-precedence": "运算符优先级"
+  "operator-precedence": "运算符优先级",
+  "arrow-function": "箭头函数",
+  "defineProperty": "Object.defineProperty"
 }

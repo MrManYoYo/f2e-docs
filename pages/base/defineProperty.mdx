@@ -1,0 +1,92 @@
+### Object.defineProperty()
+
+`Object.defineProperty()` 静态方法会直接在一个对象上定义一个新属性，或修改其现有属性，并返回此对象。
+
+```js filename="语法"
+Object.defineProperty(obj, prop, descriptor)
+```
+
+### 参数
+
+- `obj`：要定义属性的对象
+- `prop`：一个字符串或 `Symbol`，指定了要定义或修改的属性键
+- `descriptor`：要定义或修改的属性的描述符
+
+
+### 描述
+
+当一个对象通过*赋值*的方式添加的普通属性能够被枚举(例如`for...in`、`Object.keys()`等)，它们的值可以被更改，也可以被删除；
+通过`Object.defineProperty()`添加的属性，默认情况下是不可写、不可枚举和不可配置的。
+
+`configurable`:
+  当设置为 false 时，该属性的类型不能在数据属性和访问器属性之间更改，属性不可删除，其描述符的其他属性也不能被更改；当设置为true时反之
+  **`default: false`**
+
+`enumerable`:
+  当设置为 false 时，该属性不能出现在对象的枚举属性中，例如`for...in`循环，`Object.keys()`方法等；当设置为true时反之
+  **`default: false`**
+
+`value`:
+  该属性对应的值，可以是任何有效的 JavaScript 值（数值，对象，函数等）；默认为`undefined`
+  **`default: undefined`**
+
+`writable`:
+  当设置为 false 时，该属性的值不能被赋值运算符改变；当设置为true时反之
+  **`default: false`**
+
+`get`:
+  一个给属性提供 getter 的方法，如果没有 getter 则为 `undefined`。当访问该属性时，会调用此方法。执行时不传入任何参数，但是会传入`this`对象（由于继承关系，这里的`this`并不一定是定义该属性的对象）。
+  **`default: undefined`**
+
+`set`:
+  一个给属性提供 setter 的方法，如果没有 setter 则为 `undefined`。当属性值被修改时，会调用此方法。该方法将接受唯一参数，即该属性新的参数值。
+  **`default: undefined`**
+
+如果描述符没有 value、writable、get 和 set 键中的任何一个，它将被视为数据描述符。如果描述符同时具有 [value 或 writable] 和 [get 或 set] 键，则会抛出异常。
+
+```js filename="示例"
+const obj = {};
+// 1. 使用 null 原型：没有继承的属性
+const descriptor = Object.create(null);
+descriptor.value = "static";
+
+// 默认情况下，它们不可枚举、不可配置、不可写
+Object.defineProperty(obj, "key", descriptor);
+
+obj.key = "modified";
+console.log(obj); // { key: "static" }
+Object.defineProperty(obj, 'key', {
+  value: "static",
+  configurable: true,
+  writable: true,
+  enumerable: true
+}); // TypeError: Cannot redefine property: key
+```
+
+如果属性不可配置，但是可写，那么该属性的`value`仍然可以被更改，`writable`也可以从`true`改为`false`
+```js filename="示例"
+onst o = {};
+Object.defineProperty(o, "b", {
+  writable: true,
+  configurable: false,
+});
+console.log(o.b); // undefined
+Object.defineProperty(o, "b", {
+  value: 1,
+}); // 即使 configurable 为 false，因为对象是可写的，我们仍然可以替换属性的值。
+console.log(o.b); // 1
+o.b = 2; // 我们也可以使用赋值运算符来更改属性的值
+console.log(o.b); // 2
+// 切换属性的可写性
+Object.defineProperty(o, "b", {
+  writable: false,
+});
+Object.defineProperty(o, "b", {
+  value: 1,
+}); // TypeError: because the property is neither writable nor configurable, it cannot be modified
+// 此时，无法再次修改属性 'b' 或者恢复它的可写性。
+```
+
+### 参考
+
+[MDN-Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
