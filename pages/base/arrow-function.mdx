@@ -1,0 +1,88 @@
+### 箭头函数
+
+箭头函数表达式的语法比函数表达式更简洁，并且没有自己的`this`，`arguments`，`super`或`new.target`。
+箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
+
+```js filename="example"
+(param1, param2, ..., paramN) => { ... }
+
+(param1, param2, ..., paramN) => expression
+// 相当于：(param1, param2, ..., paramN) => { return expression; }
+
+// 当只有一个参数时，圆括号是可选的：
+(singleParam) => { statements }
+singleParam => { statements }
+
+// 没有参数的函数应该写成一对圆括号。
+() => { statements }
+
+//加括号的函数体返回对象字面量表达式：
+params => ({foo: bar})
+
+//支持剩余参数和默认参数
+(param1, param2, ...rest) => { statements }
+(param1 = defaultValue1, param2, …, paramN = defaultValueN) => { statements }
+
+//同样支持参数列表解构
+let f = ([a, b] = [1, 2], {x: c} = {x: a + b}) => a + b + c;
+f();  // 6
+
+```
+
+### 箭头函数没有单独的`this`
+
+**箭头函数不会创建自己的`this`，它只会从自己的作用域链的上一层继承 this。**
+
+
+> 作用域分为全局作用域和局部作用域，局部作用域只有函数能创建，而且每次调用函数都会创建一个新的局部作用域，所以每次调用函数都会创建一个新的作用域链，而箭头函数没有自己的this，所以箭头函数的this指向的是上一层作用域的this。
+
+```js filename="example"
+function Person(){
+  this.age = 20;
+
+  setInterval(() => {
+    console.log(`age: ${this.age}`); // |this| 正确地指向 p 实例
+  }, 1000);
+}
+
+var p = new Person();
+// age: 20
+```
+
+通过 call() 或 apply() 方法调用一个函数时，只能传递参数，他们的第一个参数会被忽略。
+```js filename="example"
+let adder = {
+  base : 1,
+
+  add : function(a) {
+    let f = v => v + this.base;
+    return f(a);
+  },
+
+  addThruCall: function(a) {
+    let f = v => v + this.base;
+    let b = {
+      base : 2
+    };
+
+    return f.call(b, a);
+  }
+};
+
+console.log(adder.add(1));         // 输出 2
+console.log(adder.addThruCall(1)); // 仍然输出 2
+```
+
+**箭头函数不绑定Arguments 对象**
+
+```js filename="example"
+let foo = () => {
+  console.log(arguments);
+};
+foo(); // ReferenceError: arguments is not defined
+```
+
+**箭头函数不能用作构造器，和 new一起用会抛出错误**
+
+**箭头函数没有prototype属性**
+
