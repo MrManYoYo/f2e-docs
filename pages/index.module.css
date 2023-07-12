@@ -1,0 +1,86 @@
+:is(html[class~=dark] .home-cont) {
+  background-color: rgba(17,17,17,var(--tw-bg-opacity));
+}
+
+.home-cont {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--nextra-navbar-height);
+  bottom: 0;
+  background-color: rgba(255,255,255,var(--tw-bg-opacity));
+}
+.home-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.home-item {
+  width: 100%;
+  height: calc( 100vh - var(--nextra-navbar-height) );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.home-item-title {
+  /* color: rgb(226, 232, 240); */
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+}
+.home-item-content {
+  position: relative;
+}
+
+.home-item[data-key="F2E-DOC"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23000000' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EF2E-DOC%3C/text%3E%3C/svg%3E");
+}
+:is(html[class~=dark] .home-item[data-key="F2E-DOC"]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EF2E-DOC%3C/text%3E%3C/svg%3E");
+}
+.home-item[data-key="ES6"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EES6%3C/text%3E%3C/svg%3E");
+  background-color: #fcc810;
+}
+.home-item[data-key="JS"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23000000' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EJS%3C/text%3E%3C/svg%3E");
+}
+:is(html[class~=dark] .home-item[data-key="JS"]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EJS%3C/text%3E%3C/svg%3E");
+}
+.home-item[data-key="React"] {
+  background-color: #0a7ea4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EReact%3C/text%3E%3C/svg%3E");
+}
+.home-item[data-key="CSS"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23000000' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3ECSS%3C/text%3E%3C/svg%3E");
+}
+:is(html[class~=dark] .home-item[data-key="CSS"]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3ECSS%3C/text%3E%3C/svg%3E");
+}
+.home-item[data-key="Vue"] {
+  background-color: #33a06f;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EVue%3C/text%3E%3C/svg%3E");
+}
+.home-item[data-key="Animation"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23000000' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EAnimation%3C/text%3E%3C/svg%3E");
+}
+:is(html[class~=dark] .home-item[data-key="Animation"]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EAnimation%3C/text%3E%3C/svg%3E");
+}
+.home-item[data-key="Webpack"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EWebpack%3C/text%3E%3C/svg%3E");
+  background-color: #85c7e8;
+}
+.home-item[data-key="DataVisual"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23000000' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EDataVisual%3C/text%3E%3C/svg%3E");
+}
+:is(html[class~=dark] .home-item[data-key="DataVisual"]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='80' fill='%23ffffff' font-weight='bold' font-family='system-ui, sans-serif' text-anchor='middle' dominant-baseline='middle'%3EDataVisual%3C/text%3E%3C/svg%3E");
+}

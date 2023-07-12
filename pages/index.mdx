@@ -1,0 +1,29 @@
+import IndexStyles from './index.module.css';
+
+export function Home() {
+  const keyWords = [
+    'F2E-DOC',
+    'ES6',
+    'JS',
+    'React',
+    'CSS',
+    'Vue',
+    'Animation',
+    'Webpack',
+    'DataVisual',
+  ]
+
+  return (
+    <div className={IndexStyles['home-cont']}>
+      <div className={IndexStyles['home-wrapper']}>
+        {keyWords.map((word) => (
+          <div className={IndexStyles['home-item']} key={word} data-key={word}>
+            <div className={IndexStyles['home-item-content']}></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+<Home />
