@@ -1,0 +1,23 @@
+### `Number({ valueOf: () => 2 })`的结果是什么？
+
+```js filename="example.js"
+Number({ valueOf: () => 2 }); // 2
+```
+
+表达式 `Number({valueOf: () => 2})` 的结果是 2，这是因为在 `JavaScript` 中，`Number` 函数在将对象转换为数字时会**调用对象的 `valueOf` 方法**。
+
+当一个对象被传递给 `Number` 函数时，`JavaScript` 首先会尝试调用对象的 `valueOf` 方法，以获取该对象的原始值。如果 `valueOf` 方法返回的是原始值（如数字、字符串、布尔值），那么 `Number` 函数会将该原始值转换为对应的数字。
+
+在这种情况下，对象 `{valueOf: () => 2}` 具有一个自定义的 `valueOf` 方法，该方法返回数字 `2`。因此，当 `Number` 函数将这个对象转换为数字时，它会调用对象的 `valueOf` 方法，得到返回值 `2`，并将其转换为数字类型。
+
+需要注意的是，如果对象的 `valueOf` 方法返回的不是原始值，或者对象没有定义 `valueOf` 方法，则会继续尝试调用对象的 `toString` 方法进行转换。如果 `toString` 方法返回的是一个可以被解析为数字的字符串，那么 `Number` 函数会将该字符串转换为数字。
+
+```js filename="example.js"
+Number({ toString: () => "2" }); // 2
+
+Number({ valueOf: () => {} }); // NaN
+Number({ value: () => {} }); // NaN
+Number({ value: 2 }); // NaN
+Number({}); // NaN
+
+```

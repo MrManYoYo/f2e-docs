@@ -1,0 +1,93 @@
+
+### includes()
+
+在一个字符串中搜索是否包含指定的另一个字符串，返回布尔值。该方法区分字符串大小写。
+
+`includes(searchString, position)`
+
+`position`可选值，表示从指定索引开始搜索。
+
+```js filename="example.js"
+'hello world'.includes('hello'); // true
+'hello world'.includes('Hello'); // false
+'hello world'.includes('hello', 6); // false
+```
+
+### startsWith() 和 endsWith()
+
+`startsWith()`用于判断字符串是否以指定字符串开头，返回布尔值。该方法区分字符串大小写。
+
+`endsWith()`用于判断字符串是否以指定字符串结尾，返回布尔值。该方法区分字符串大小写。
+
+```js filename="example.js"
+'hello world'.startsWith('hello'); // true
+'hello world'.startsWith('Hello'); // false
+'hello world'.startsWith('world', 6); // true
+
+'hello world'.endsWith('world'); // true
+'hello world'.endsWith('World'); // false
+'hello world'.endsWith('hello', 5); // true
+```
+
+### repeat()
+
+`repeat()`方法返回一个新字符串，表示将原字符串重复n次。
+
+```js filename="example.js"
+'x'.repeat(3); // 'xxx'
+'hello'.repeat(2); // 'hellohello'
+'na'.repeat(0); // ''
+
+// 参数如果是小数，会被上取整
+'na'.repeat(2.9); // 'nana'
+// 参数如果是负数或Infinity，会报错
+'na'.repeat(-1); // RangeError
+
+// 参数如果是字符串，则会先转换成数字
+'na'.repeat('na'); // ''
+'na'.repeat('3'); // 'nanana'
+
+// 参数如果是对象，则会先转换成字符串
+'na'.repeat({}); // ''
+'na'.repeat({ valueOf: () => 2 }); // 'nana'
+
+// 参数如果是NaN，则等同于0
+'na'.repeat(NaN); // ''
+
+// 参数如果是0到-1之间的小数，则等同于0
+'na'.repeat(-0.9); // ''
+```
+
+
+
+### padStart() 和 padEnd()
+
+ES6中新增了补全字符串长度的方法。如果某个字符串不够指定长度，则会从头部或尾部补全指定内容。
+
+```js filename="example.js"
+'a'.padStart(5, 'bc'); // 'bcbca'
+'a'.padStart(6, 'bc'); // 'bcbcba'
+
+'a'.padEnd(5, 'bc'); // 'abcbc'
+'a'.padEnd(6, 'bc'); // 'abcbcb'
+```
+
+如果原字符串的长度，等于或大于指定的最小长度，则返回原字符串。
+
+如果省略了第二个参数，则会使用空格进行补全。
+
+```js filename="example.js"
+'abc'.padStart(3, 'd'); // 'abc'
+'abc'.padStart(10); // '       abc'
+```
+
+
+### trimStart() 和 trimEnd()
+
+该方法都是用于去除字符串空格，区别在于`trimStart()`只去除头部空格，`trimEnd()`只去除尾部空格。头尾空格都去除的是`trim()`。
+
+```js filename="example.js"
+'  abc  '.trimStart(); // 'abc  '
+'  abc  '.trimEnd(); // '  abc'
+'  abc  '.trim(); // 'abc'
+```
