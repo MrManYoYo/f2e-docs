@@ -6,5 +6,6 @@
   "arrow-function": "箭头函数",
   "defineProperty": "Object.defineProperty",
   "string-es6": "ES6中String新增方法",
-  "number2": "Number({ valueOf: () => 2 })"
+  "number2": "Number({ valueOf: () => 2 })",
+  "script-attribute": "Script属性"
 }
