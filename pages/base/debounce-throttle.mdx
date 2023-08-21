@@ -1,0 +1,65 @@
+### 防抖与节流
+
+### 防抖
+
+防止频繁触发莫个事件：只有在事件触发后n秒内没有再次触发事件，才会执行事件处理函数，如果在n秒内再次触发了事件，则会重新计算事件触发时间。
+
+实现思路：
+ - 防抖函数是一个工具函数，参数至少需要一个目标事件函数以及时间间隔
+ - 防抖函数返回一个调用目标函数的函数
+ - 调用目标函数的函数内部使用setTimeout来实现延迟调用，如果在延迟时间内再次调用了目标函数，则清除上一次的延迟调用，重新开始计时
+ - 如果在等待时间内再次调用了函数，则清除上一次的延迟调用，重新开始计时
+ - 定时器的变量需要保存在闭包中，以便于清除，否则，每次触发都会重新创建一个定时器变量，而无法清楚上次的定时器
+
+根据上述思路，实现代码如下：
+```js filename="debounce.js"
+function debounce (fn, interval) {
+  let timer = null;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(fn, interval);
+  }
+}
+```
+
+此时，需要处理this绑定的问题，因为目标函数的this指向的是调用函数的this，而不是目标函数的this，所以需要将调用函数的this传递给目标函数;
+除了this之外，函数还可能会有参数需要传递；
+结合以上补充内容，实现代码如下：
+```js filename="debounce.js"
+// bind
+function debounce (fn, interval) {
+  let timer = null;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(fn.bind(this), interval);
+  }
+}
+
+// call/apply
+function debounce (fn, interval) {
+  let timer = null;
+  return function () {
+    let that = this;
+    let args = [...arguments];
+    clearTimeout(timer);
+
+    timer = setTimeout(function () {
+      fn.apply(that, args);
+      // fn.call(that, ...args);
+    }, interval);
+  }
+}
+
+// 箭头函数
+function debounce (fn, interval) {
+  let timer = null;
+  return function () {
+    let args = [...arguments];
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, interval);
+  }
+}
+```
