@@ -63,3 +63,47 @@ function debounce (fn, interval) {
   }
 }
 ```
+
+
+### 节流
+
+在一定时间内，只能触发一次事件，如果在规定时间内再次触发事件，则不会执行事件处理函数，直到规定时间结束。
+
+实现思路：
+ - 节流函数是一个工具函数，参数至少需要一个目标事件函数以及时间间隔
+ - 节流函数返回一个调用目标函数的函数
+ - 需要记录时间来对比是否已经过了规定时间
+ - 使用闭包保存时间变量
+
+根据上述思路，实现代码如下：
+```js filename="throttle.js"
+function throttle (fn, interval) {
+  let last = 0; // 第一次的时候，last为0，所以第一次一定会执行
+  return function () {
+    let now = Date.now();
+    if (now - last > interval) {
+      fn();
+      last = now;
+    }
+  }
+}
+```
+
+此时，需要处理this绑定的问题，因为目标函数的this指向的是调用函数的this，而不是目标函数的this，所以需要将调用函数的this传递给目标函数;
+除了this之外，函数还可能会有参数需要传递；
+结合以上补充内容，实现代码如下：
+```js filename="throttle.js"
+// apply/call
+function throttle (fn, interval) {
+  let last = 0; // 第一次的时候，last为0，所以第一次一定会执行
+  return function () {
+    let arg = [...arguments]
+    let now = Date.now();
+    if (now - last > interval) {
+      fn.apply(this, arg);
+      // fn.call(this, ...arg);
+      last = now;
+    }
+  }
+}
+```
