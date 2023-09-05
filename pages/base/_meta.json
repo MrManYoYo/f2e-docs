@@ -8,5 +8,6 @@
   "string-es6": "ES6中String新增方法",
   "number2": "Number({ valueOf: () => 2 })",
   "script-attribute": "Script属性",
-  "debounce-throttle": "防抖与节流"
+  "debounce-throttle": "防抖与节流",
+  "empty-object": "创建空对象"
 }
