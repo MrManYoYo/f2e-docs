@@ -1,0 +1,77 @@
+import Image from 'next/image';
+import { Callout } from 'nextra/components';
+
+### OSI模型 & TCP/IP模型
+
+<Image src="/imgs/osi-tcp-model.png" alt="osi-tcp" width={500} height={368} />
+
+
+### OSI七层模型每层功能和协议概述
+
+1. **物理层（Physical Layer）：**
+
+- 功能：传输原始比特流，定义物理介质（例如电缆、光纤、无线电波）的特性和传输数据的方式。
+- 任务：传输比特，负责电压、频率、物理连接和信号的传输。
+- 协议：无特定协议，但包括硬件标准，如`以太网（Ethernet）`、`USB`、`RS-232C`。
+
+2. **数据链路层（Data Link Layer）：**
+
+- 功能：负责在物理介质上传输数据帧，并提供数据的可靠性和错误检测。
+- 任务：错误检测和纠正、数据包的帧封装、物理地址（MAC地址）的分配和管理。
+- 协议：`以太网（Ethernet）`、`Wi-Fi`、`PPP（Point-to-Point Protocol）`、`HDLC（High-Level Data Link Control）`。
+
+3. **网络层（Network Layer）：**
+
+- 功能：管理数据包的路由、转发和寻址，确保数据包从源地址到目的地址的正确传输。
+- 任务：数据包的寻址（如IP地址）、路由选择、分割和重组数据包、提供跨越不同网络的连接。
+- 协议：`IP（Internet Protocol）`、`ICMP（Internet Control Message Protocol）`、`OSPF（Open Shortest Path First）`。
+
+4. **传输层（Transport Layer）：**
+
+- 功能：提供端到端通信，确保数据的可靠传输和错误检测。
+- 任务：数据包的分段和重组、流量控制、错误检测和重传、端口号的分配。
+- 协议：`TCP（Transmission Control Protocol）`、`UDP（User Datagram Protocol）`、`SCTP（Stream Control Transmission Protocol）`。
+
+5. **会话层（Session Layer）：**
+
+- 功能：管理和协调通信会话，包括连接的建立、维护和终止。
+- 任务：建立、管理和终止通信会话，处理会话过程中的错误和异常情况。
+- 协议：通常没有明确定义的协议，但包括`RPC（Remote Procedure Call）`和`NetBIOS`。
+
+6. **表示层（Presentation Layer）：**
+
+- 功能：处理数据的编码、加密、压缩和解压缩，以确保数据在不同系统之间的兼容性。
+- 任务：数据的加密和解密、数据的格式转换、字符集转换、数据压缩和解压缩。
+- 协议：`SSL/TLS（Secure Sockets Layer/Transport Layer Security）`。
+
+7. **应用层（Application Layer）：**
+
+- 功能：提供用户和应用程序之间的通信接口，包括各种应用层协议和服务。
+- 任务：实现各种网络应用，如Web浏览器、电子邮件、文件传输、远程登录等。
+- 协议：`HTTP（Hypertext Transfer Protocol）`、`FTP（File Transfer Protocol）`、`SMTP（Simple Mail Transfer Protocol）`、`POP3（Post Office Protocol 3）`。
+
+
+### TCP/IP协议
+
+TCP/IP 协议（Transmission Control Protocol/Internet Protocol）是一组通信协议的集合，
+它构成了互联网的基础。这些协议被设计用于在计算机网络中进行数据通信，
+包括数据的传输、路由、错误检测和纠正，以及网络连接的建立和终止。
+TCP/IP 协议套件是互联网通信的核心，它定义了网络通信的标准规则，使不同种类的计算机和网络设备能够在全球范围内相互通信。
+
+TCP/IP 协议套件包括许多协议，其中最重要的是：
+
+- **IP（Internet Protocol）：** IP 协议负责在网络中传递数据包，为每个连接到互联网的设备分配唯一的 IP 地址，以便数据包能够正确路由到目的地。
+
+- **TCP（Transmission Control Protocol）：** TCP 协议提供可靠的、面向连接的数据传输，确保数据在源和目的地之间的可靠交付。它处理数据的分段、流量控制、错误检测和重传。
+
+- **UDP（User Datagram Protocol）：** UDP 协议也用于数据传输，但它是一种无连接协议，不提供与 TCP 相同的可靠性。UDP 更适用于需要低延迟和不那么可靠的应用，如音频和视频流。
+
+- **ICMP（Internet Control Message Protocol）：** ICMP 用于在网络中传递错误消息和操作消息，例如路由错误或主机不可达消息。
+
+- **HTTP（Hypertext Transfer Protocol）：** HTTP 是一种应用层协议，用于在Web上传输超文本文档，也就是网页。它是互联网上最常用的协议之一。
+
+- **FTP（File Transfer Protocol）：** FTP 允许用户在计算机之间传输文件，通常用于文件上传和下载。
+
+- **SMTP（Simple Mail Transfer Protocol）：** SMTP 用于电子邮件的传输，它负责将电子邮件从发件人传递到接收人的邮件服务器。
+
+- **POP3（Post Office Protocol 3）和IMAP（Internet Message Access Protocol）：** 这些协议用于在客户端设备和电子邮件服务器之间获取和管理电子邮件。
