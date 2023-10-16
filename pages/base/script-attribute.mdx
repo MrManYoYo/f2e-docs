@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 ### `script`的`async`和`defer`属性
 
 在浏览器解析到HTML时，会按照顺序解析，当解析到`<script>`时，会暂停解析HTML，然后加载并执行`<script>`中的代码，然后再继续解析HTML。
@@ -9,15 +11,24 @@
 无属性时，`script`加载会阻塞HTML解析，因此`script`中可能获取不到`DOM`元素；
 在网络加载的过程中，如果响应慢或者始终没有响应，则会导致页面一直白屏。
 
+<Image src="/imgs/script-default.png" alt="dns" width={600} height={400} />
+
+
 ### `<script async>`
 
 `async`属性可以异步加载并执行`script`，但是异步加载的`script`不能保证加载顺序（根据网络请求返回的顺序执行），因此如果有多个`script`，并且有依赖关系，则不能使用`async`属性。
 `async`也会导致`HTML`解析阻塞，因此`script`中可能获取不到`DOM`元素。
 
+<br />
+
+<Image src="/imgs/script-async.png" alt="dns" width={600} height={400} />
+
 ### `<script defer>`
 
 `defer`属性可以异步加载`script`，但是会等到`HTML`解析完毕后再执行，因此`script`中可以获取到`DOM`元素。
 多个`defer`属性的脚本加载顺序则是按照`script`在`HTML`中的顺序执行。
+
+<Image src="/imgs/script-defer.png" alt="dns" width={600} height={400} />
 
 ------
 
